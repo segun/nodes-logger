@@ -23,20 +23,11 @@ app.options("/log", cors()); // Handle preflight requests
 app.post("/log", (req, res) => {
     // Get the body of the request
     const logData = req.body;
-
-    console.log("Received log data:");
-    console.log("-------------------");
-    console.log(logData);
-    console.log("-------------------");
-
     // Pretty print the received data    
     console.log("Received log data:");
     console.log("-------------------");
     console.log(JSON.stringify(logData, null, 2));
     console.log("-------------------");
-    // sendMessage(JSON.stringify(logData, null, 2));
-
-    // Send a success response
     res.status(200).json({
         status: "success",
         message: "Log data received and printed",
