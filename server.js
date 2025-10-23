@@ -23,6 +23,17 @@ app.options("/log", cors()); // Handle preflight requests
 app.post("/log", (req, res) => {
     // Get the body of the request
     const logData = req.body;
+    // put this in a file
+    const fs = require('fs');
+    const path = 'logs.json';
+
+    // Append the log data to the file
+    fs.appendFile(path, JSON.stringify(logData) + '\n', (err) => {
+        if (err) {
+            console.error('Error writing to log file', err);
+        }
+    });
+    
     // Pretty print the received data    
     console.log("Received log data:");
     console.log("-------------------");
